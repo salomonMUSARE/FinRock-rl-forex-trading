@@ -1,0 +1,63 @@
+{
+    "indicators": [
+        {
+            "name": "BolingerBands",
+            "names": [
+                "SMA",
+                "BB_up",
+                "BB_dn"
+            ],
+            "target_column": "close",
+            "min": 6850.65544582408,
+            "max": 12636.592081445368,
+            "period": 20,
+            "std": 2
+        },
+        {
+            "name": "RSI",
+            "names": [
+                "RSI"
+            ],
+            "target_column": "close",
+            "min": 0.0,
+            "max": 100.0,
+            "period": 14
+        },
+        {
+            "name": "PSAR",
+            "names": [
+                "PSAR"
+            ],
+            "target_column": "close",
+            "min": 7031.07,
+            "max": 12473.0,
+            "step": 0.02,
+            "max_step": 0.2
+        },
+        {
+            "name": "MACD",
+            "names": [
+                "MACD",
+                "MACD_signal"
+            ],
+            "target_column": "close",
+            "min": -255.2548220300403,
+            "max": 289.8057211538842,
+            "fast_ma": 12,
+            "slow_ma": 26,
+            "histogram": 9
+        },
+        {
+            "name": "SMA",
+            "names": [
+                "SMA7"
+            ],
+            "target_column": "close",
+            "min": 7089.404285714286,
+            "max": 12357.73142857143,
+            "period": 7
+        }
+    ],
+    "min": 7031.07,
+    "max": 12473.0
+}
