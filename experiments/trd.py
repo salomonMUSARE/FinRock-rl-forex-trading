@@ -1,3 +1,4 @@
+
 import os
 import numpy as np
 import pandas as pd
@@ -45,7 +46,7 @@ def critic_model(input_shape):
     output = layers.Dense(1, activation=None)(x)
     return models.Model(inputs=input, outputs=output)
 
-if __name__ == '__main__':
+if name == 'main':
     import multiprocessing
     multiprocessing.freeze_support()  # Required for Windows
 
@@ -107,7 +108,7 @@ if __name__ == '__main__':
     # Save initial model
     initial_mean_reward = 0  # Placeholder for initial mean reward
     initial_account_value = 1000  # Starting account value
-    agent.save_models(f'{logdir}/initial_model_epoch_0_reward_{int(initial_mean_reward)}_account_{int(initial_account_value)}')
+    agent.save_models(f'{logdir}/initial_model_epoch_0.00_reward_{initial_mean_reward:.2f}_account_{initial_account_value:.2f}')
     print("Saving model since it's the initial model")
 
     memory = MemoryManager(num_envs=num_envs)
@@ -118,7 +119,7 @@ if __name__ == '__main__':
     rewards = 0.0
     epoch_counter = 0  # Initialize an epoch counter for manual control
 
-    # Training loop
+# Training loop
     while True:
         action, prob = agent.act(states)
         next_states, reward, terminated, truncated, infos = env.step(action)
@@ -137,13 +138,13 @@ if __name__ == '__main__':
             # Save model at every 100 epochs
             if agent.epoch % 100 == 0:
                 account_value = env_memory.infos[-1]["metrics"]['account_value']
-                agent.save_models(f'{logdir}/checkpoint_model_epoch_{agent.epoch}_reward_{int(mean_reward)}_account_{int(account_value)}')
+                agent.save_models(f'{logdir}/checkpoint_model_epoch_{agent.epoch:.2f}_reward_{mean_reward:.2f}_account_{account_value:.2f}')
                 print(f"Saving model at epoch {agent.epoch} as a checkpoint with reward {int(mean_reward)} and account value {int(account_value)}")
 
             # Save the best model if it achieves a new high mean reward
             if meanAverage.is_best(agent.epoch):
                 account_value = env_memory.infos[-1]["metrics"]['account_value']
-                agent.save_models(f'{logdir}/best_model_epoch_{agent.epoch}_reward_{int(mean_reward)}_account_{int(account_value)}')
+                agent.save_models(f'{logdir}/best_model_epoch_{agent.epoch:.2f}_reward_{mean_reward:.2f}_account_{account_value:.2f}')
                 print(f"Saving model at epoch {agent.epoch} since it achieved a new best mean reward {int(mean_reward)} and account value {int(account_value)}")
 
             # Check for KL divergence condition and adjust learning rate if needed
